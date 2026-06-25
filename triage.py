@@ -101,7 +101,7 @@ def gh_api(path: str, paginate: bool = True) -> tuple[list | dict | None, str]:
         cmd.append("--paginate")
     cmd.append(path)
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+        result = subprocess.run(cmd, capture_output=True, text=True, check=False, encoding='utf-8', errors='replace'))
     except FileNotFoundError:
         return None, "gh CLI not found on PATH"
     if result.returncode != 0:
